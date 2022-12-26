@@ -14,8 +14,8 @@ public class TimeTable {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id; // id가 왜이리 이상하게 증가하는지
     private String day; // mon, tue, wed, thu, fri, sat, sun
-    private String start; // 8.5 도 가능은 하게. 일단은 hour 단위로.
-    private String end;
+    private Integer start; // 8.5 도 가능은 하게. 일단은 hour 단위로.
+    private Integer end;
     private String user; //
 
     public Integer getId() {
@@ -26,11 +26,11 @@ public class TimeTable {
         return day;
     }
 
-    public String getStart() {
+    public Integer getStart() {
         return start;
     }
 
-    public String getEnd() {
+    public Integer getEnd() {
         return end;
     }
 
@@ -46,11 +46,11 @@ public class TimeTable {
         this.day = day;
     }
 
-    public void setStart(String start) {
+    public void setStart(Integer start) {
         this.start = start;
     }
 
-    public void setEnd(String end) {
+    public void setEnd(Integer end) {
         this.end = end;
     }
 

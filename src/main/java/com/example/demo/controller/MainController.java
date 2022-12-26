@@ -5,7 +5,6 @@ import com.example.demo.repository.TimeTableRepository;
 import com.example.demo.repository.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,8 +43,8 @@ public class MainController {
     @PostMapping(path="/addtime")
     public @ResponseBody String addNewTime (
             @RequestParam String day,
-            @RequestParam String start,
-            @RequestParam String end,
+            @RequestParam Integer start,
+            @RequestParam Integer end,
             @RequestParam String user) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
