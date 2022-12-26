@@ -11,7 +11,7 @@ import jakarta.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class TimeTable {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id; // id가 왜이리 이상하게 증가하는지
     private String day; // mon, tue, wed, thu, fri, sat, sun
     private String start; // 8.5 도 가능은 하게. 일단은 hour 단위로.
