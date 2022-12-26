@@ -4,13 +4,16 @@ import com.example.demo.repository.Timetable;
 import com.example.demo.repository.TimetableRepository;
 import com.example.demo.repository.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.service.TimetableService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 //@Controller // This means that this class is a Controller
 @RestController // This means that returns a JSON or XML with the users
@@ -49,12 +52,18 @@ public class TimetableController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
+        TimetableService timetableService = new TimetableService();
+        if (!timetableService.validateDay(day) || !timetableService.validateTime(start, end)) {
+            Throwable ex = new Throwable();
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_ACCEPTABLE, "Invalid day, time", ex);
+        }
         Timetable n = new Timetable();
         n.setDay(day);
         n.setStart(start);
         n.setEnd(end);
         n.setUser(user);
-        timeTableRepository.save(n);
+        timetableRepository.save(n);
         return "Saved";
     }
 
@@ -69,6 +78,6 @@ public class TimetableController {
     @GetMapping(path="/alltime")
     public @ResponseBody Iterable<Timetable> getAllTimeTables() {
         // This returns a JSON or XML with the users
-        return timeTableRepository.findAll();
+        return timetableRepository.findAll();
     }
 }
