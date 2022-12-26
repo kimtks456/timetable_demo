@@ -1,10 +1,10 @@
 package com.example.demo.service;
 
-public class TimeTableA implements TimeTable {
+public class TimetableB implements Timetable {
 
     @Override
     public String get() {
-        return "A";
+        return "B";
     }
 }
 

@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.service.TimeTable;
-import com.example.demo.service.TimeTableA;
+import com.example.demo.service.Timetable;
+import com.example.demo.service.TimetableA;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class WebMVCConfig {
 
     @Bean
-    TimeTable timeTable() {
-        return new TimeTableA();
+    Timetable timeTable() {
+        return new TimetableA();
     }
 }

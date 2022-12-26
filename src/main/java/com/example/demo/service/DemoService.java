@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 public class DemoService {
 
     private final DemoInjection demoInjection;
-    private final TimeTable timeTable = new TimeTableB();
+    private final Timetable timeTable = new TimetableB();
 
     public DemoService(DemoInjection demoInjection) {
         this.demoInjection = demoInjection;

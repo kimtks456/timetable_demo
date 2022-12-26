@@ -9,7 +9,7 @@ import jakarta.persistence.Id;
 // type : old(구관), new(신관) 이거 기존 있는 것들은 default None으로
 
 @Entity // This tells Hibernate to make a table out of this class
-public class TimeTable {
+public class Timetable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id; // id가 왜이리 이상하게 증가하는지
