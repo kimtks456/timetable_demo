@@ -1,8 +1,11 @@
 package com.example.demo.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-public interface NewBuildingTimetableRepository extends CrudRepository<NewBuildingTimetable, Integer> {
+public interface NewBuildingTimetableRepository {
 
+    NewBuildingTimetable save(NewBuildingTimetable newBuildingTimetable);
+    List<NewBuildingTimetable> findAll();
+
+    List<NewBuildingTimetable> findByDay(String monday);
 }

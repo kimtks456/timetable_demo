@@ -26,4 +26,8 @@ public class TimetableService {
     public boolean validateTimeInRange(Integer time) {
         return (time >= 12) && (time <= 24);
     }
+
+//    public boolean isDuplicate(String day, Integer start, Integer end) {
+//
+//    }
 }

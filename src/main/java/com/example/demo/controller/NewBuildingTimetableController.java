@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.repository.CustomNewBuildingTimetableRepository;
 import com.example.demo.repository.NewBuildingTimetable;
 import com.example.demo.repository.NewBuildingTimetableRepository;
 import com.example.demo.repository.Timetable;
 import com.example.demo.service.TimetableService;
+import jakarta.transaction.Transactional;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
+@Transactional
 @RequestMapping(path = "/new", produces = "application/json;charset=UTF-8")
 public class NewBuildingTimetableController {
+
+
+//    private NewBuildingTimetableRepository newBuildingTimetableRepository;
 
     @Autowired
     private NewBuildingTimetableRepository newBuildingTimetableRepository;
@@ -31,6 +38,7 @@ public class NewBuildingTimetableController {
         // @RequestParam means it is a parameter from the GET or POST request
 
         TimetableService timetableService = new TimetableService();
+        System.out.println(day);
         if (!timetableService.validateDay(day) || !timetableService.validateTime(start, end)) {
             Throwable ex = new Throwable();
             throw new ResponseStatusException(
@@ -46,8 +54,12 @@ public class NewBuildingTimetableController {
     }
 
     @GetMapping(path="/alltime")
-    public @ResponseBody Iterable<NewBuildingTimetable> getAllTimeTables() {
+    public @ResponseBody List<NewBuildingTimetable> getAllTimeTables() {
         // This returns a JSON or XML with the users
+//        List<NewBuildingTimetable> temp = newBuildingTimetableRepository.findByDay("mon");
+//        for (NewBuildingTimetable item : temp) {
+//            System.out.println(item.getDay());
+//        }
         return newBuildingTimetableRepository.findAll();
     }
 }
