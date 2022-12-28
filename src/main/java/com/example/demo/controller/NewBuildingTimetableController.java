@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.repository.CustomNewBuildingTimetableRepository;
 import com.example.demo.repository.NewBuildingTimetable;
 import com.example.demo.repository.NewBuildingTimetableRepository;
-import com.example.demo.repository.Timetable;
 import com.example.demo.service.TimetableService;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -48,7 +46,7 @@ public class NewBuildingTimetableController {
         if (
                 !timetableService.validateDay(day)
                 || !timetableService.validateTime(start, end)
-                || timetableService.isDuplicate(n, newBuildingTimetableRepository.findByDay(day))
+                || timetableService.isDuplicateNew(n, newBuildingTimetableRepository.findByDay(day))
             ) {
             Throwable ex = new Throwable();
             throw new ResponseStatusException(

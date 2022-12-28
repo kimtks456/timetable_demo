@@ -1,14 +1,13 @@
 package com.example.demo;
 
 import com.example.demo.repository.CustomNewBuildingTimetableRepository;
+import com.example.demo.repository.CustomOldBuildingTimetableRepository;
 import com.example.demo.repository.NewBuildingTimetableRepository;
-import com.example.demo.service.Timetable;
-import com.example.demo.service.TimetableA;
+import com.example.demo.repository.OldBuildingTimetableRepository;
 import jakarta.persistence.EntityManager;
 import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 public class SpringConfig {
@@ -26,8 +25,8 @@ public class SpringConfig {
         return new CustomNewBuildingTimetableRepository(em);
     }
 
-//    @Bean
-//    Timetable timeTable() {
-//        return new TimetableA();
-//    }
+    @Bean
+    public OldBuildingTimetableRepository oldBuildingTimetableRepository() {
+        return new CustomOldBuildingTimetableRepository(em);
+    }
 }
