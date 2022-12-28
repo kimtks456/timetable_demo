@@ -8,8 +8,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class WebMVCConfig {
 
-    @Bean
-    Timetable timeTable() {
-        return new TimetableA();
-    }
+//    @Bean
+//    Timetable timeTable() {
+//        return new TimetableA();
+//    }
 }
