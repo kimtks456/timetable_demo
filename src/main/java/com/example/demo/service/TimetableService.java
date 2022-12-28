@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.repository.NewBuildingTimetable;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,7 +28,20 @@ public class TimetableService {
         return (time >= 12) && (time <= 24);
     }
 
-//    public boolean isDuplicate(String day, Integer start, Integer end) {
-//
-//    }
+    public boolean isDuplicate(NewBuildingTimetable target, List<NewBuildingTimetable> timetable) {
+        if (timetable.isEmpty()) {
+            return false;
+        }
+        Integer start = target.getStart();
+        Integer end = target.getEnd();
+        for (NewBuildingTimetable item : timetable) {
+            if (start >= item.getStart() && start < item.getEnd()) {
+                return true;
+            }
+            if (end > item.getStart() && end <= item.getEnd()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

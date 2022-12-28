@@ -38,17 +38,23 @@ public class NewBuildingTimetableController {
         // @RequestParam means it is a parameter from the GET or POST request
 
         TimetableService timetableService = new TimetableService();
-        System.out.println(day);
-        if (!timetableService.validateDay(day) || !timetableService.validateTime(start, end)) {
-            Throwable ex = new Throwable();
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_ACCEPTABLE, "Invalid day, time", ex);
-        }
+
         NewBuildingTimetable n = new NewBuildingTimetable();
         n.setDay(day);
         n.setStart(start);
         n.setEnd(end);
         n.setUser(user);
+
+        if (
+                !timetableService.validateDay(day)
+                || !timetableService.validateTime(start, end)
+                || timetableService.isDuplicate(n, newBuildingTimetableRepository.findByDay(day))
+            ) {
+            Throwable ex = new Throwable();
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_ACCEPTABLE, "Invalid day, time", ex);
+        }
+
         newBuildingTimetableRepository.save(n);
         return "Saved";
     }
@@ -56,10 +62,7 @@ public class NewBuildingTimetableController {
     @GetMapping(path="/alltime")
     public @ResponseBody List<NewBuildingTimetable> getAllTimeTables() {
         // This returns a JSON or XML with the users
-//        List<NewBuildingTimetable> temp = newBuildingTimetableRepository.findByDay("mon");
-//        for (NewBuildingTimetable item : temp) {
-//            System.out.println(item.getDay());
-//        }
+
         return newBuildingTimetableRepository.findAll();
     }
 }
