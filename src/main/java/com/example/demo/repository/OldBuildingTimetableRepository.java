@@ -12,4 +12,6 @@ public interface OldBuildingTimetableRepository {
     List<OldBuildingTimetable> findById(long id);
 
     List<OldBuildingTimetable> update(long id, OldBuildingTimetable reqTime);
+
+    int delete(long id);
 }

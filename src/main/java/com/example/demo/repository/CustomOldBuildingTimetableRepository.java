@@ -45,6 +45,12 @@ public class CustomOldBuildingTimetableRepository implements OldBuildingTimetabl
                 .setParameter("id", id)
                 .setParameter("start", req.getStart())
                 .setParameter("end", req.getEnd())
-                .getResultList();
+                .getResultList(); // executeUpdate();를 call 해야하는듯함.
+    }
+
+    public int delete(long id) {
+        return em.createQuery("delete from OldBuildingTimetable o where o.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
     }
 }
