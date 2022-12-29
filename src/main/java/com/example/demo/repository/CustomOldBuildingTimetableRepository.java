@@ -2,6 +2,7 @@ package com.example.demo.repository;
 
 import jakarta.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 public class CustomOldBuildingTimetableRepository implements OldBuildingTimetableRepository {
 
@@ -23,9 +24,15 @@ public class CustomOldBuildingTimetableRepository implements OldBuildingTimetabl
     }
 
     public List<OldBuildingTimetable> findByDay(String day) {
-        List<OldBuildingTimetable> result = em.createQuery("select n from OldBuildingTimetable n where n.day = :day", OldBuildingTimetable.class)
+        return em.createQuery("select n from OldBuildingTimetable n where n.day = :day", OldBuildingTimetable.class)
                 .setParameter("day", day)
                 .getResultList();
-        return result;
+    }
+
+    public List<OldBuildingTimetable> findById(Integer id) {
+        return em.createQuery("select n from OldBuildingTimetable n where n.id = :id", OldBuildingTimetable.class)
+                .setParameter("id", id)
+                .getResultList();
+
     }
 }

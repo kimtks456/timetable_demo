@@ -26,6 +26,13 @@ public class NewBuildingTimetableController {
     @Autowired
     private NewBuildingTimetableRepository newBuildingTimetableRepository;
 
+    @GetMapping(path="/alltime")
+    public @ResponseBody List<NewBuildingTimetable> getAllTimeTables() {
+        // This returns a JSON or XML with the users
+
+        return newBuildingTimetableRepository.findAll();
+    }
+
     @PostMapping(path = "/addtime")
     public @ResponseBody String addNewTime (
             @RequestParam String day,
@@ -55,12 +62,5 @@ public class NewBuildingTimetableController {
 
         newBuildingTimetableRepository.save(n);
         return "Saved";
-    }
-
-    @GetMapping(path="/alltime")
-    public @ResponseBody List<NewBuildingTimetable> getAllTimeTables() {
-        // This returns a JSON or XML with the users
-
-        return newBuildingTimetableRepository.findAll();
     }
 }
