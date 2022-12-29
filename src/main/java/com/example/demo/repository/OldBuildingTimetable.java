@@ -9,13 +9,13 @@ import jakarta.persistence.Id;
 public class OldBuildingTimetable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private long id;
     private String day;
     private Integer start;
     private Integer end;
     private String user;
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
@@ -35,7 +35,7 @@ public class OldBuildingTimetable {
         return user;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 

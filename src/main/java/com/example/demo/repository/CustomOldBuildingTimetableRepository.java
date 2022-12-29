@@ -29,10 +29,22 @@ public class CustomOldBuildingTimetableRepository implements OldBuildingTimetabl
                 .getResultList();
     }
 
-    public List<OldBuildingTimetable> findById(Integer id) {
+
+
+    public List<OldBuildingTimetable> findById(long id) {
         return em.createQuery("select n from OldBuildingTimetable n where n.id = :id", OldBuildingTimetable.class)
                 .setParameter("id", id)
                 .getResultList();
 
+    }
+
+    public List<OldBuildingTimetable> update(long id, OldBuildingTimetable req) {
+        return em.createQuery(
+                        "UPDATE OldBuildingTimetable o SET o.day = :day, o.start = :start, o.end = :end WHERE o.id = :id",
+                        OldBuildingTimetable.class)
+                .setParameter("id", id)
+                .setParameter("start", req.getStart())
+                .setParameter("end", req.getEnd())
+                .getResultList();
     }
 }

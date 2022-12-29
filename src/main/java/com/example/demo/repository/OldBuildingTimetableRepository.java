@@ -8,4 +8,8 @@ public interface OldBuildingTimetableRepository {
     List<OldBuildingTimetable> findAll();
 
     List<OldBuildingTimetable> findByDay(String monday);
+
+    List<OldBuildingTimetable> findById(long id);
+
+    List<OldBuildingTimetable> update(long id, OldBuildingTimetable reqTime);
 }

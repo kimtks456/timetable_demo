@@ -62,4 +62,38 @@ public class TimetableService {
         }
         return false;
     }
+
+    public boolean isDuplicateOldUpdate(OldBuildingTimetable target, List<OldBuildingTimetable> timetable) {
+//        if (target.size() == 0) {
+//            System.out.println("ID zero\n");
+//            return true; // requested id doesn't exist in db
+//        }
+
+        if (timetable.isEmpty()) {
+            return false;
+        }
+
+//        OldBuildingTimetable targetTable = target.get(0);
+        Integer start = target.getStart();
+        Integer end = target.getEnd();
+
+        System.out.println("REQUIRED : " + target.getDay()+target.getStart()+target.getEnd()+"\n");
+
+        for (OldBuildingTimetable item : timetable) {
+            System.out.println("This item : "+item.getDay()+item.getStart()+item.getEnd()+"\n");
+
+            if (target.getId() == item.getId()) {
+                continue;
+            }
+            if (start >= item.getStart() && start < item.getEnd()) {
+                System.out.println("start invalid\n");
+                return true;
+            }
+            if (end > item.getStart() && end <= item.getEnd()) {
+                System.out.println("end invalid\n");
+                return true;
+            }
+        }
+        return false;
+    }
 }
