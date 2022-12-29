@@ -8,4 +8,8 @@ public interface NewBuildingTimetableRepository {
     List<NewBuildingTimetable> findAll();
 
     List<NewBuildingTimetable> findByDay(String monday);
+
+    List<NewBuildingTimetable> findById(long id);
+
+    int delete(long id);
 }

@@ -41,7 +41,7 @@ public class CustomOldBuildingTimetableRepository implements OldBuildingTimetabl
     public List<OldBuildingTimetable> update(long id, OldBuildingTimetable req) {
         return em.createQuery(
                         "UPDATE OldBuildingTimetable o SET o.day = :day, o.start = :start, o.end = :end WHERE o.id = :id",
-                        OldBuildingTimetable.class)
+                        OldBuildingTimetable.class) // 두번째 parameter를 지워야함 !!
                 .setParameter("id", id)
                 .setParameter("start", req.getStart())
                 .setParameter("end", req.getEnd())

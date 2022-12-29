@@ -28,4 +28,17 @@ public class CustomNewBuildingTimetableRepository implements NewBuildingTimetabl
                 .getResultList();
         return result;
     }
+
+    public List<NewBuildingTimetable> findById(long id) {
+        return em.createQuery("select n from NewBuildingTimetable n where n.id = :id", NewBuildingTimetable.class)
+                .setParameter("id", id)
+                .getResultList();
+
+    }
+
+    public int delete(long id) {
+        return em.createQuery("delete from NewBuildingTimetable o where o.id = :id")
+                .setParameter("id", id)
+                .executeUpdate();
+    }
 }
