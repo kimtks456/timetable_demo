@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.demo.service.TimetableServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-29T20:00:27" hostname="gimsan-ui-MacBookAir.local" time="0.038">
+<testsuite name="com.example.demo.service.TimetableServiceTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-12-30T14:55:31" hostname="gimsan-ui-MacBookAir.local" time="0.035">
   <properties/>
   <testcase name="validateTimeInRange()" classname="com.example.demo.service.TimetableServiceTest" time="0.0"/>
-  <testcase name="validateDay()" classname="com.example.demo.service.TimetableServiceTest" time="0.036"/>
+  <testcase name="validateDay()" classname="com.example.demo.service.TimetableServiceTest" time="0.033"/>
   <testcase name="validateTime()" classname="com.example.demo.service.TimetableServiceTest" time="0.001"/>
   <system-out><![CDATA[false
 ]]></system-out>

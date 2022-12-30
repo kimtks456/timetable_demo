@@ -82,6 +82,7 @@ public class NewBuildingTimetableController {
         if (
                 !timetableService.validateDay(reqTime.getDay())
                         || !timetableService.validateTime(reqTime.getStart(), reqTime.getEnd())
+                        || id != reqTime.getId()
                         || timetableService.isDuplicateNewUpdate(reqTime, newBuildingTimetableRepository.findByDay(
                         reqTime.getDay()))
         ) {

@@ -77,6 +77,7 @@ public class OldBuildingTimetableController {
         if (
                 !timetableService.validateDay(reqTime.getDay())
                         || !timetableService.validateTime(reqTime.getStart(), reqTime.getEnd())
+                        || id != reqTime.getId()
                         || timetableService.isDuplicateOldUpdate(reqTime, oldBuildingTimetableRepository.findByDay(
                         reqTime.getDay()))
         ) {
