@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.repository.OldBuildingTimetable;
 import com.example.demo.repository.OldBuildingTimetableRepository;
+import com.example.demo.repository.TimetableVO;
 import com.example.demo.service.TimetableService;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -27,34 +28,30 @@ public class OldBuildingTimetableController {
     @Autowired
     private OldBuildingTimetableRepository oldBuildingTimetableRepository;
 
-    @GetMapping(path = "/alltime")
-    public @ResponseBody Iterable<OldBuildingTimetable> getAllTimeTables() {
+    @GetMapping
+    public @ResponseBody Iterable<OldBuildingTimetable> get() {
         // This returns a JSON or XML with the users
         return oldBuildingTimetableRepository.findAll();
     }
 
-    @PostMapping(path = "/addtime")
-    public @ResponseBody String addNewTime(
-            @RequestParam String day,
-            @RequestParam Integer start,
-            @RequestParam Integer end,
-            @RequestParam String user) {
+    @PostMapping
+    public @ResponseBody String post(@RequestBody TimetableVO reqTime) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
         TimetableService timetableService = new TimetableService();
 
         OldBuildingTimetable n = new OldBuildingTimetable();
-        n.setDay(day);
-        n.setStart(start);
-        n.setEnd(end);
-        n.setUser(user);
+        n.setDay(reqTime.getDay());
+        n.setStart(reqTime.getStart());
+        n.setEnd(reqTime.getEnd());
+        n.setUser(reqTime.getUser());
 
         if (
-                !timetableService.validateDay(day)
-                        || !timetableService.validateTime(start, end)
-                        || timetableService.isDuplicateOld(n, oldBuildingTimetableRepository.findByDay(day))
-        ) {
+                !timetableService.validateDay(reqTime.getDay())
+                || !timetableService.validateTime(reqTime.getStart(), reqTime.getEnd())
+                || timetableService.isDuplicateOld(n, oldBuildingTimetableRepository.findByDay(reqTime.getDay()))
+            ) {
             Throwable ex = new Throwable();
             throw new ResponseStatusException(
                     HttpStatus.NOT_ACCEPTABLE, "Invalid day, time", ex);
@@ -65,7 +62,7 @@ public class OldBuildingTimetableController {
     }
 
     @PatchMapping("/{id}")
-    public long patch (@PathVariable("id") long id, @RequestBody OldBuildingTimetable reqTime) {
+    public long patch(@PathVariable("id") long id, @RequestBody OldBuildingTimetable reqTime) {
         TimetableService timetableService = new TimetableService();
         List<OldBuildingTimetable> target = oldBuildingTimetableRepository.findById(id);
 
@@ -97,7 +94,7 @@ public class OldBuildingTimetableController {
     }
 
     @DeleteMapping("/{id}")
-    public int delete (@PathVariable("id") long id) {
+    public int delete(@PathVariable("id") long id) {
         if (oldBuildingTimetableRepository.findById(id).size() == 0) {
             Throwable ex = new Throwable();
             throw new ResponseStatusException(
