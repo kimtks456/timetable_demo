@@ -3,14 +3,16 @@ package com.example.demo.service;
 import com.example.demo.repository.NewBuildingTimetable;
 import com.example.demo.repository.OldBuildingTimetable;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class TimetableService {
 
-    private static List<String> days = Stream.of(
-            "mon", "tue", "wed", "thu", "fri", "sat", "sun")
-            .collect(Collectors.toList());
+    private static final List<String> days = Stream.of(
+            "mon", "tue", "wed", "thu", "fri", "sat", "sun").toList();
 
     public boolean validateDay(String day) {
         for (String item : days) {
@@ -73,24 +75,23 @@ public class TimetableService {
             return false;
         }
 
-//        OldBuildingTimetable targetTable = target.get(0);
         Integer start = target.getStart();
         Integer end = target.getEnd();
 
-        System.out.println("REQUIRED : " + target.getDay()+target.getStart()+target.getEnd()+"\n");
+        log.info("REQUIRED : " + target.getDay()+target.getStart()+target.getEnd()+"\n");
 
         for (OldBuildingTimetable item : timetable) {
-            System.out.println("This item : "+item.getDay()+item.getStart()+item.getEnd()+"\n");
+            log.info("This item : "+item.getDay()+item.getStart()+item.getEnd()+"\n");
 
             if (target.getId() == item.getId()) {
                 continue;
             }
             if (start >= item.getStart() && start < item.getEnd()) {
-                System.out.println("start invalid\n");
+                log.info("start invalid\n");
                 return true;
             }
             if (end > item.getStart() && end <= item.getEnd()) {
-                System.out.println("end invalid\n");
+                log.info("end invalid\n");
                 return true;
             }
         }
@@ -105,20 +106,20 @@ public class TimetableService {
         Integer start = target.getStart();
         Integer end = target.getEnd();
 
-        System.out.println("REQUIRED : " + target.getDay()+target.getStart()+target.getEnd()+"\n");
+        log.info("REQUIRED : " + target.getDay()+target.getStart()+target.getEnd()+"\n");
 
         for (NewBuildingTimetable item : timetable) {
-            System.out.println("This item : "+item.getDay()+item.getStart()+item.getEnd()+"\n");
+            log.info("This item : "+item.getDay()+item.getStart()+item.getEnd()+"\n");
 
-            if (target.getId() == item.getId()) {
+            if (Objects.equals(target.getId(), item.getId())) {
                 continue;
             }
             if (start >= item.getStart() && start < item.getEnd()) {
-                System.out.println("start invalid\n");
+                log.info("start invalid\n");
                 return true;
             }
             if (end > item.getStart() && end <= item.getEnd()) {
-                System.out.println("end invalid\n");
+                log.info("end invalid\n");
                 return true;
             }
         }

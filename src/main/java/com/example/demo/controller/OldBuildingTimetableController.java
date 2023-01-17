@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -56,7 +55,6 @@ public class OldBuildingTimetableController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_ACCEPTABLE, "Invalid day, time", ex);
         }
-
         oldBuildingTimetableRepository.save(n);
         return "Saved";
     }
@@ -89,8 +87,6 @@ public class OldBuildingTimetableController {
         targetTime.setEnd(reqTime.getEnd());
         oldBuildingTimetableRepository.save(targetTime);
         return targetTime.getId();
-//        OldBuildingTimetable res = oldBuildingTimetableRepository.update(id, reqTime).get(0);
-//        return res.getId();
     }
 
     @DeleteMapping("/{id}")
@@ -100,9 +96,6 @@ public class OldBuildingTimetableController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_ACCEPTABLE, "There is no such id in DB", ex);
         }
-
         return oldBuildingTimetableRepository.delete(id);
     }
-
-
 }

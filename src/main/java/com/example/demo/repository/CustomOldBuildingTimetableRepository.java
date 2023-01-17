@@ -2,7 +2,6 @@ package com.example.demo.repository;
 
 import jakarta.persistence.EntityManager;
 import java.util.List;
-import java.util.Optional;
 
 public class CustomOldBuildingTimetableRepository implements OldBuildingTimetableRepository {
 
@@ -35,7 +34,6 @@ public class CustomOldBuildingTimetableRepository implements OldBuildingTimetabl
         return em.createQuery("select n from OldBuildingTimetable n where n.id = :id", OldBuildingTimetable.class)
                 .setParameter("id", id)
                 .getResultList();
-
     }
 
     public List<OldBuildingTimetable> update(long id, OldBuildingTimetable req) {

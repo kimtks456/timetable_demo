@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.repository.NewBuildingTimetable;
 import com.example.demo.repository.NewBuildingTimetableRepository;
-import com.example.demo.repository.OldBuildingTimetable;
 import com.example.demo.repository.TimetableVO;
 import com.example.demo.service.TimetableService;
 import jakarta.transaction.Transactional;
@@ -16,18 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+// Contoller가 View page return하는 반면, RestController는 String같은 data나 JSON을 return
 @RestController
 @Transactional
 @RequestMapping(path = "/new", produces = "application/json;charset=UTF-8")
 public class NewBuildingTimetableController {
-
-
-//    private NewBuildingTimetableRepository newBuildingTimetableRepository;
 
     @Autowired
     private NewBuildingTimetableRepository newBuildingTimetableRepository;
@@ -35,7 +31,6 @@ public class NewBuildingTimetableController {
     @GetMapping
     public @ResponseBody List<NewBuildingTimetable> get() {
         // This returns a JSON or XML with the users
-
         return newBuildingTimetableRepository.findAll();
     }
 
@@ -54,9 +49,10 @@ public class NewBuildingTimetableController {
 
         if (
                 !timetableService.validateDay(reqTime.getDay())
-                || !timetableService.validateTime(reqTime.getStart(), reqTime.getEnd())
-                || timetableService.isDuplicateNew(n, newBuildingTimetableRepository.findByDay(reqTime.getDay()))
-            ) {
+                        || !timetableService.validateTime(reqTime.getStart(), reqTime.getEnd())
+                        || timetableService.isDuplicateNew(n,
+                        newBuildingTimetableRepository.findByDay(reqTime.getDay()))
+        ) {
             Throwable ex = new Throwable();
             throw new ResponseStatusException(
                     HttpStatus.NOT_ACCEPTABLE, "Invalid day, time", ex);
@@ -105,7 +101,6 @@ public class NewBuildingTimetableController {
             throw new ResponseStatusException(
                     HttpStatus.NOT_ACCEPTABLE, "There is no such id in DB", ex);
         }
-
         return newBuildingTimetableRepository.delete(id);
     }
 }

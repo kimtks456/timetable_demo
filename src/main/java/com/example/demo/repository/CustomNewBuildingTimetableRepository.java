@@ -11,7 +11,6 @@ public class CustomNewBuildingTimetableRepository implements NewBuildingTimetabl
         this.em = em;
     }
 
-
     public NewBuildingTimetable save(NewBuildingTimetable newBuildingTimetable) {
         em.persist(newBuildingTimetable);
         return null;
@@ -33,7 +32,6 @@ public class CustomNewBuildingTimetableRepository implements NewBuildingTimetabl
         return em.createQuery("select n from NewBuildingTimetable n where n.id = :id", NewBuildingTimetable.class)
                 .setParameter("id", id)
                 .getResultList();
-
     }
 
     public int delete(long id) {
