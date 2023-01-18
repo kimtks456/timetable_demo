@@ -34,7 +34,7 @@ public class NewBuildingTimetableController {
         return newBuildingTimetableRepository.findAll();
     }
 
-    @PostMapping // @RequestMapping(method=RequestMethod.POST, value=..)의 축약형
+    @PostMapping(path = "/admin") // @RequestMapping(method=RequestMethod.POST, value=..)의 축약형
     public @ResponseBody String post(@RequestBody TimetableVO reqTime) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
@@ -62,7 +62,7 @@ public class NewBuildingTimetableController {
         return "Saved";
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/admin/{id}")
     public long patch(@PathVariable("id") long id, @RequestBody NewBuildingTimetable reqTime) {
         TimetableService timetableService = new TimetableService();
         List<NewBuildingTimetable> target = newBuildingTimetableRepository.findById(id);
@@ -94,7 +94,7 @@ public class NewBuildingTimetableController {
 //        return res.getId();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public int delete(@PathVariable("id") long id) {
         if (newBuildingTimetableRepository.findById(id).size() == 0) {
             Throwable ex = new Throwable();

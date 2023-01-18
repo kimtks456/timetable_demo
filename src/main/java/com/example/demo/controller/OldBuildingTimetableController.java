@@ -33,7 +33,7 @@ public class OldBuildingTimetableController {
         return oldBuildingTimetableRepository.findAll();
     }
 
-    @PostMapping
+    @PostMapping(path = "/admin")
     public @ResponseBody String post(@RequestBody TimetableVO reqTime) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
@@ -59,7 +59,7 @@ public class OldBuildingTimetableController {
         return "Saved";
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/admin/{id}")
     public long patch(@PathVariable("id") long id, @RequestBody OldBuildingTimetable reqTime) {
         TimetableService timetableService = new TimetableService();
         List<OldBuildingTimetable> target = oldBuildingTimetableRepository.findById(id);
@@ -89,7 +89,7 @@ public class OldBuildingTimetableController {
         return targetTime.getId();
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public int delete(@PathVariable("id") long id) {
         if (oldBuildingTimetableRepository.findById(id).size() == 0) {
             Throwable ex = new Throwable();
