@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.example.demo.service.DemoServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-01-18T19:27:16" hostname="gimsan-ui-MacBookAir.local" time="0.001">
+<testsuite name="com.example.demo.service.DemoServiceTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-01-19T04:07:56" hostname="gimsan-ui-MacBookAir.local" time="0.0">
   <properties/>
   <testcase name="timetable()" classname="com.example.demo.service.DemoServiceTest" time="0.0"/>
   <testcase name="test1()" classname="com.example.demo.service.DemoServiceTest" time="0.0"/>
