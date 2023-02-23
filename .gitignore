@@ -175,3 +175,14 @@ Temporary Items
 
 .idea
 # End of https://www.toptal.com/developers/gitignore/api/macos,intellij,java
+
+#https://stackoverflow.com/questions/25436312/gitignore-not-working
+keystore.p12
+keystore-new.p12
+application.properties
+
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/

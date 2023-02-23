@@ -44,7 +44,7 @@ public class OldBuildingTimetableController {
         n.setDay(reqTime.getDay());
         n.setStart(reqTime.getStart());
         n.setEnd(reqTime.getEnd());
-        n.setUser(reqTime.getUser());
+        n.setUser(reqTime.getUser()); // builder로 하면 깔끔.
 
         if (
                 !timetableService.validateDay(reqTime.getDay())
